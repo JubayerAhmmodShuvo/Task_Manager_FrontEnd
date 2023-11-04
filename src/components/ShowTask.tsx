@@ -39,13 +39,13 @@ const ShowTask = () => {
 
   return (
     <div>
-      <div className="btn-group">
+      <div className="btn-group mx-auto my-8 grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row flex-col justify-center gap-2">
         <button
           className={`${
             statusFilter === "all"
               ? "bg-blue-500 text-white"
-              : "bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white"
-          } font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded`}
+              : "bg-transparent hover:bg-black text-black hover:text-white"
+          } text-lg py-2 px-4 border border-blue-50 hover:border-transparent rounded font-serif`}
           onClick={() => setStatusFilter("all")}
         >
           All
@@ -54,8 +54,8 @@ const ShowTask = () => {
           className={`${
             statusFilter === "pending"
               ? "bg-blue-500 text-white"
-              : "bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white"
-          } font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded`}
+              : "bg-transparent hover:bg-black text-black hover:text-white"
+          } text-lg py-2 px-4 border border-blue-50 hover:border-transparent rounded mx-1 font-serif`}
           onClick={() => setStatusFilter("pending")}
         >
           Pending
@@ -64,8 +64,8 @@ const ShowTask = () => {
           className={`${
             statusFilter === "ongoing"
               ? "bg-blue-500 text-white"
-              : "bg-transparent hover-bg-blue-500 text-blue-700 hover:text-white"
-          } font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded`}
+              : "bg-transparent hover:bg-black text-black hover:text-white"
+          } text-lg py-2 px-4 border border-blue-50 hover:border-transparent rounded mx-1 font-serif`}
           onClick={() => setStatusFilter("ongoing")}
         >
           Ongoing
@@ -74,14 +74,15 @@ const ShowTask = () => {
           className={`${
             statusFilter === "completed"
               ? "bg-blue-500 text-white"
-              : "bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white"
-          } font-semibold py-2 px-4 border border-blue-500 hover:border-transparent rounded`}
+              : "bg-transparent hover:bg-black text-black hover:text-white"
+          } text-lg py-2 px-4 border border-blue-50 hover:border-transparent rounded font-serif`}
           onClick={() => setStatusFilter("completed")}
         >
           Completed
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
         {isLoading
           ? "Loading..."
           : tasks
