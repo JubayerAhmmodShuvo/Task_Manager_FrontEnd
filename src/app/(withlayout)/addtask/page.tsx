@@ -16,7 +16,6 @@ import FormInput from "@/components/FORMS/FormInput";
 const TaskPage = () => {
   const userInfo = getUserInfo() as { id: string };
   const { id: user } = userInfo;
-  console.log(user);
   const router = useRouter();
   const [task, { error }] = useCreateTaskMutation();
 
@@ -46,7 +45,10 @@ const TaskPage = () => {
         Add a New Task
       </h1>
       <div className="mb-6 lg:w-96 mx-auto">
-        <Form submitHandler={onSubmit}>
+        <Form
+          submitHandler={onSubmit}
+          defaultValues={{ taskName: "", description: "" }}
+        >
           <div className="mb-4">
             <FormInput
               name="taskName"

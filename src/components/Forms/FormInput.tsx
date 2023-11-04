@@ -40,13 +40,16 @@ const FormInput = ({
 
   return (
     <div className="mb-4">
-      <label
-        className="block text-gray-700 text-sm font-bold mb-2"
-        htmlFor={name}
-      >
-        {label}
-        {required && <span className="text-red-500">*</span>}
-      </label>
+     {required ? (
+        <span
+          style={{
+            color: "red",
+          }}
+        >
+          *
+        </span>
+      ) : null}
+      {label ? label : null}
       <Controller
         control={control}
         name={name}

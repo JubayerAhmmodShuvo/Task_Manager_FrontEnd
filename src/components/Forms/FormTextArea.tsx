@@ -21,7 +21,7 @@ const FormTextArea = ({
 
   return (
     <div className="flex flex-col w-full">
-      {label && <label className="text-sm">{label}</label>}
+      {label ? label : null}
       <Controller
         control={control}
         name={name}
