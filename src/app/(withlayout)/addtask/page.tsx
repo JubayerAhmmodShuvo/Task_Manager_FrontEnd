@@ -10,8 +10,8 @@ import FormTextArea from "@/components/Forms/FormTextArea";
 import { taskSchema } from "@/schemas/task";
 import { useCreateTaskMutation } from "@/redux/api/taskApi";
 import { getUserInfo } from "@/services/auth.service";
-import Form from "@/components/FORMS/Form";
-import FormInput from "@/components/FORMS/FormInput";
+import Form from "@/components/Forms/Form";
+import FormInput from "@/components/Forms/FormInput";
 
 const TaskPage = () => {
   const userInfo = getUserInfo() as { id: string };
@@ -41,15 +41,16 @@ const TaskPage = () => {
 
   return (
     <div className="mt-6 border-2 rounded">
-      <h1 className="text-2xl text-center text-violet-700 font-bold mb-4">
+      <h1 className="text-2xl text-center text-violet-700 font-bold my-6">
         Add a New Task
       </h1>
-      <div className="mb-6 lg:w-96 mx-auto">
+      <div className="mb-6 lg:w-96 mx-auto px-3">
         <Form
           submitHandler={onSubmit}
           defaultValues={{ taskName: "", description: "" }}
+          resolver={yupResolver(taskSchema)}
         >
-          <div className="mb-4">
+          <div className="mb-4 ">
             <FormInput
               name="taskName"
               type="text"
@@ -57,7 +58,7 @@ const TaskPage = () => {
               label="Task Name"
               required
               disabled={false}
-              className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md"
+              className="w-full py-2 px-3 bg-gray-50 text-sm font-serif rounded-md"
             />
           </div>
           <div className="mb-4">
@@ -66,7 +67,7 @@ const TaskPage = () => {
               label="Task Description"
               required
               rows={4}
-              className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md"
+              className="w-full py-2 px-3 bg-gray-50 text-sm font-serifrounded-md"
             />
           </div>
           <button

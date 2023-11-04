@@ -60,7 +60,7 @@ const FormInput = ({
             type={type}
             className={`${
               size === "large" ? "p-3" : "p-2"
-            } rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 ${className}`}
+            } rounded-md border border-gray-300 focus:outline-none  focus:border-blue-500 ${className}`}
             placeholder={placeholder}
             disabled={disabled}
           />
