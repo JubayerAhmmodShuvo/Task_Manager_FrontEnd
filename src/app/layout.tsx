@@ -1,10 +1,10 @@
 import Providers from "@/lib/Providers";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ToastContainer } from "react-toastify";
 
-const inter = Inter({ subsets: ["latin"] });
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const metadata: Metadata = {
   title: "Task Management",
@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body>{children}</body>
-      
+        <body>
+          {children}
+          <ToastContainer />
+        </body>
       </html>
     </Providers>
   );

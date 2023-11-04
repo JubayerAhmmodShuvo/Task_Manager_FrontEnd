@@ -3,29 +3,39 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-
+import { SubmitHandler } from "react-hook-form";
 import signupImage from "../../assets/signup-image.png";
 import { useUserSignUpMutation } from "../../redux/api/authApi";
 import { signupSchema } from "../../schemas/signup";
 import Form from "@/components/FORMS/Form";
 import FormInput from "@/components/FORMS/FormInput";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+type FormValues = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+
 
 const SignupPage = () => {
   const [userSignup] = useUserSignUpMutation();
   const router = useRouter();
 
-  const onSubmit = async (data:any) => {
-    try {
-      const res = await userSignup({ ...data }).unwrap();
+ const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+   try {
+     const res = await userSignup({ ...data }).unwrap();
+    
+     toast.success("User registered successfully!");
 
-      router.push("/login");
-      toast.success("User registered successfully!");
-    } catch (err:any) {
-      toast.error(err.message);
-    }
-  };
+     router.push("/login");
+   } catch (err: any) {
+     toast.error(err.message);
+   }
+ };
 
   return (
     <div className="flex justify-center items-center max-w-screen min-h-screen bg-gray-100">

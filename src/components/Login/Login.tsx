@@ -3,32 +3,40 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 
 import loginImage from "../../assets/login-image.png";
 import { useUserLoginMutation } from "../../redux/api/authApi";
 
 import { loginSchema } from "../../schemas/login";
 import { storeUserInfo } from "@/services/auth.service";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import FormInput from "../FORMS/FormInput";
 import Form from "../FORMS/Form";
-import { toast } from "react-toastify";
 
 
+
+
+type FormValues = {
+  email: string;
+  password: string;
+};
 const LoginPage = () => {
   const [userLogin] = useUserLoginMutation();
   const router = useRouter();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
 
       if (res?.accessToken) {
         router.push("/home");
-       toast.success("User logged in successfully!");
+        toast.success("User logged in successfully!");
       }
       storeUserInfo({ accessToken: res?.accessToken });
-    } catch (err:any) {
+    } catch (err: any) {
       toast.error(err.message);
     }
   };

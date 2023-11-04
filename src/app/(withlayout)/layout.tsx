@@ -26,10 +26,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="">
-      <Header />
-      {children}
-      <ToastContainer />
+   
+      <div className="max-w-7xl w-full mx-auto p-8">
+        <Header />
+        {children}
+     
     </div>
   );
 };

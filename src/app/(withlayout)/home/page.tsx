@@ -1,9 +1,10 @@
 import React from 'react';
+import TaskPage from '../addtask/page';
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Hello</h1>
+      <TaskPage />
     </div>
   );
 };
