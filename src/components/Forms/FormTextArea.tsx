@@ -1,10 +1,9 @@
-import { useFormContext } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 
 type TextAreaProps = {
   name: string;
   label?: string;
   rows?: number;
-  value?: string;
   placeholder?: string;
   required?: boolean;
   className?: string;
@@ -14,7 +13,6 @@ const FormTextArea = ({
   name,
   label,
   rows,
-  value,
   placeholder,
   required,
   className,
@@ -24,14 +22,20 @@ const FormTextArea = ({
   return (
     <div className="flex flex-col w-full">
       {label && <label className="text-sm">{label}</label>}
-      <textarea
+      <Controller
+        control={control}
         name={name}
-        rows={rows}
-        placeholder={placeholder}
-        className={`p-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 ${
-          required ? "required" : ""
-        } ${className}`}
-        defaultValue={value}
+        render={({ field }) => (
+          <textarea
+           
+            rows={rows}
+            placeholder={placeholder}
+            className={`p-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500 ${
+              required ? "required" : ""
+            } ${className}`}
+            {...field}
+          />
+        )}
       />
     </div>
   );

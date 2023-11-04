@@ -6,7 +6,6 @@ interface IInput {
   name: string;
   type?: string;
   size?: "large" | "small";
-  value?: string | string[] | undefined;
   id?: string;
   placeholder?: string;
   validation?: object;
@@ -58,7 +57,7 @@ const FormInput = ({
             type={type}
             className={`${
               size === "large" ? "p-3" : "p-2"
-            } rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 ${className}`} // Include className here
+            } rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 ${className}`}
             placeholder={placeholder}
             disabled={disabled}
           />
