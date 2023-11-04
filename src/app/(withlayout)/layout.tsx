@@ -1,10 +1,12 @@
 "use client";
 
 import { isLoggedIn } from "@/services/auth.service";
-
+import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "../loading";
+import "react-toastify/dist/ReactToastify.css";
+import Header from "@/components/Header";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -24,10 +26,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-  
-     
-     {children}
-   
+    <div className="">
+      <Header />
+      {children}
+      <ToastContainer />
+    </div>
   );
 };
 
