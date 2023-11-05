@@ -7,8 +7,8 @@ import { SubmitHandler } from "react-hook-form";
 import signupImage from "../../assets/signup-image.png";
 import { useUserSignUpMutation } from "../../redux/api/authApi";
 import { signupSchema } from "../../schemas/signup";
-import Form from "@/components/FORMS/Form";
-import FormInput from "@/components/FORMS/FormInput";
+import Form from "@/components/Forms/Form";
+import FormInput from "@/components/Forms/FormInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -38,8 +38,8 @@ const SignupPage = () => {
  };
 
   return (
-    <div className="flex justify-center items-center max-w-screen min-h-screen bg-gray-100">
-      <div className="md:w-1/2 lg:w-1/3">
+    <div className="flex flex-col md:flex-row justify-center items-center max-w-screen min-h-screen">
+      <div className="md:w-full lg:w-1/2  text-center md:text-left p-8">
         <Image src={signupImage} width={400} alt="signup image" />
       </div>
       <div className="md:w-1/2 lg:w-2/3 p-8">
@@ -76,7 +76,7 @@ const SignupPage = () => {
                 type="password"
                 size="large"
                 label="User Password"
-                disabled={false} 
+                disabled={false}
                 className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md"
                 required
               />

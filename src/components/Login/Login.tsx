@@ -13,8 +13,8 @@ import { storeUserInfo } from "@/services/auth.service";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FormInput from "../FORMS/FormInput";
-import Form from "../FORMS/Form";
+import FormInput from "../Forms/FormInput";
+import Form from "../Forms/Form";
 
 
 
@@ -42,8 +42,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center max-w-screen min-h-screen bg-gray-100">
-      <div className="md:w-1/2 lg:w-1/3">
+    <div className="flex flex-col md:flex-row justify-center items-center max-w-screen min-h-screen">
+      <div className="md:w-full lg:w-1/2  text-center md:text-left p-8">
         <Image src={loginImage} width={350} alt="login image" />
       </div>
       <div className="md:w-1/2 lg:w-2/3 p-8">
@@ -59,8 +59,8 @@ const LoginPage = () => {
                 size="large"
                 label="User Email"
                 required
-                disabled={false} // Set disabled to true or false as needed
-                className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md" // Add className here
+                disabled={false} 
+                className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md" 
               />
             </div>
             <div className="mb-4 w-full">
@@ -70,8 +70,8 @@ const LoginPage = () => {
                 size="large"
                 label="User Password"
                 required
-                disabled={false} 
-                className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md" 
+                disabled={false}
+                className="w-full py-2 px-3 bg-gray-100 text-lg rounded-md"
               />
             </div>
             <button
@@ -85,7 +85,6 @@ const LoginPage = () => {
         <p style={{ textAlign: "center", fontSize: "20px" }}>
           Don&rsquo;t have an account? Please
           <Link href="/signup">
-          
             <p className="text-blue-500">SignUp</p>
           </Link>
           .

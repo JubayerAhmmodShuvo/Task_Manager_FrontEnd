@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const SignUp = () => {
   return (
-    <div>
+    <div className="max-w-7xl w-full mx-auto p-8">
       <SignupPage />
     </div>
   );
