@@ -73,7 +73,7 @@ const TaskPage = () => {
               />
             </div>
             <button
-              className="text-black cursor-pointer bg-transparent hover-bg-violet-700 flex justify-center mx-auto items-center font-semibold hover-text-white py-2 px-4 border border-blue-500 hover-border-transparent rounded"
+              className="text-black  cursor-pointer bg-transparent hover:bg-violet-600 hover:text-white flex justify-center mx-auto items-center font-semibold hover-text-white py-2 px-4 border border-blue-500 hover-border-transparent rounded"
               type="submit"
             >
               Add Task
@@ -81,8 +81,8 @@ const TaskPage = () => {
           </Form>
         </div>
       </div>
-    
-    <ShowTask />
+
+      <ShowTask />
     </>
   );
 };

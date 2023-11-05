@@ -62,16 +62,23 @@ export const taskApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.task],
     }),
+    getTaskById: build.query({
+      query: (taskId) => ({
+        url: `${TASK_URL}/${taskId}`, 
+        method: "GET", 
+      }),
+    }),
   }),
 });
 
 export const {
   useUpdateTaskMutation,
- useCreateTaskMutation,
+  useCreateTaskMutation,
   useMarkTaskAsOngoingMutation,
   useMarkTaskAsCompletedMutation,
   useGetAllTasksByUserQuery,
   useGetOngoingTasksByUserQuery,
   useGetCompletedTasksByUserQuery,
   useDeleteTaskMutation,
+  useGetTaskByIdQuery,
 } = taskApi;

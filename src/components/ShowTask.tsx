@@ -9,6 +9,7 @@ import { getUserInfo } from "@/services/auth.service";
 import TaskCard from "./TaskCard";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 export type Task = {
   isOngoing: any;
@@ -21,6 +22,7 @@ export type Task = {
 };
 
 const ShowTask = () => {
+    const router = useRouter();
   const { data: tasks, isLoading } = useGetAllTasksByUserQuery(
     {},
     {
@@ -68,6 +70,11 @@ const ShowTask = () => {
     }
   };
 
+  const onUpdate = (taskId: React.Key | null | undefined | string) => {
+    router.push(`edit/${taskId}`);
+  }
+
+
   const filterTasksByStatus = (status: string) => {
     return tasks.filter((task: Task) => task.status === status);
   };
@@ -101,6 +108,7 @@ const ShowTask = () => {
                   onStart={() => onStart(task._id)}
                   onComplete={() => onComplete(task._id)}
                   onDelete={() => onDelete(task._id)}
+                  onUpdate={() => onUpdate(task._id)}
                 />
               </div>
             ))
@@ -111,6 +119,7 @@ const ShowTask = () => {
                   onStart={() => onStart(task._id)}
                   onComplete={() => onComplete(task._id)}
                   onDelete={() => onDelete(task._id)}
+                  onUpdate={() => onUpdate(task._id)}
                 />
               </div>
             ))}
