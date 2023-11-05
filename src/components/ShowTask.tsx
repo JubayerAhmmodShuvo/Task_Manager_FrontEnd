@@ -36,7 +36,9 @@ const ShowTask = () => {
   const [remove] = useDeleteTaskMutation();
 
   const [statusFilter, setStatusFilter] = useState("all");
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const tasksPerPage = 9;
 
   const onStart = async (taskId: React.Key | null | undefined | string) => {
     try {
@@ -79,10 +81,17 @@ const ShowTask = () => {
     return tasks.filter((task: Task) => task.status === status);
   };
 
-
   const filteredTasks = tasks?.filter((task: Task) =>
     task.taskName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+
+  const indexOfLastTask = currentPage * tasksPerPage;
+  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+  const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
+
+ 
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -115,22 +124,28 @@ const ShowTask = () => {
         </div>
       </div>
 
+      <div className="flex justify-center my-6">
+        {Array(Math.ceil(filteredTasks.length / tasksPerPage))
+          .fill(0)
+          .map((_, index) => (
+            <button
+              key={index}
+              onClick={() => paginate(index + 1)}
+              className={`${
+                currentPage === index + 1
+                  ? "bg-blue-500 text-white"
+                  : "bg-transparent hover:bg-black text-black hover:text-white"
+              } px-3 py-2 mx-1 border border-blue-500 rounded-full`}
+            >
+              {index + 1}
+            </button>
+          ))}
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
         {isLoading
           ? "Loading..."
-          : statusFilter === "all"
-          ? filteredTasks.map((task: Task) => (
-              <div key={task._id}>
-                <TaskCard
-                  task={task}
-                  onStart={() => onStart(task._id)}
-                  onComplete={() => onComplete(task._id)}
-                  onDelete={() => onDelete(task._id)}
-                  onUpdate={() => onUpdate(task._id)}
-                />
-              </div>
-            ))
-          : filterTasksByStatus(statusFilter).map((task: Task) => (
+          : currentTasks.map((task: Task) => (
               <div key={task._id}>
                 <TaskCard
                   task={task}
