@@ -58,7 +58,7 @@ const TaskCard = ({
 
           <div className="space-y-2 sm:space-y-0 lg:flex lg:flex-row flex flex-col gap-2 justify-between">
             <button
-              className={`bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent ${
+              className={`bg-transparent rounded hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent ${
                 startButtonDisabled ? "cursor-not-allowed bg-gray-400" : ""
               }`}
               onClick={() => onStart(task._id)}
@@ -67,7 +67,7 @@ const TaskCard = ({
               Start
             </button>
             <button
-              className={`bg-transparent sm:mx-0 sm:my-2 hover:bg-green-700 text-green-700 hover:text-white py-2 px-4 border border-green-500 hover:border-transparent ${
+              className={`bg-transparent rounded sm:mx-0 sm:my-2 hover:bg-green-700 text-green-700 hover:text-white py-2 px-4 border border-green-500 hover:border-transparent ${
                 allButtonsDisabled ? "cursor-not-allowed bg-gray-400" : ""
               }`}
               onClick={() => onComplete(task._id)}
@@ -76,7 +76,7 @@ const TaskCard = ({
               Complete
             </button>
             <button
-              className={`bg-transparent hover:bg-red-500 text-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent ${
+              className={`bg-transparent rounded hover:bg-red-500 text-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent ${
                 allButtonsDisabled ? "cursor-not-allowed bg-gray-400" : ""
               }`}
               onClick={() => onDelete(task._id)}
