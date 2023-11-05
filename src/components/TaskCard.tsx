@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Task } from "./ShowTask";
 import { format } from "date-fns";
 
@@ -27,20 +27,38 @@ const TaskCard = ({
   const startButtonDisabled = isOngoing || isCompleted;
   const allButtonsDisabled = isCompleted;
 
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  const descriptionToShow = showFullDescription
+    ? task.description 
+    : `${task.description.slice(0, 120)}...`; 
+
   return (
     <div className="bg-gray-100 rounded p-8 relative">
-      <div className="card">
+      <div className="card ">
         <div className="card-body">
           <h2 className="card-title my-4 font-serif text-xl">
             {task.taskName}
           </h2>
-          <p className="card-text mb-5 ">{task.description}</p>
+          <p className="card-text mb-5">{descriptionToShow}</p>
+          {task.description.length > 60 && (
+            <button
+              className="text-blue-500 hover:underline mb-2"
+              onClick={toggleDescription}
+            >
+              {showFullDescription ? "Show Less" : "Show More"}
+            </button>
+          )}
           <p className="card-text mb-2">Status: {task.status}</p>
           <p className="card-text mb-6">Created at: {formattedCreatedAt}</p>
 
           <div className="space-y-2 sm:space-y-0 lg:flex lg:flex-row flex flex-col gap-2 justify-between">
             <button
-              className={`bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+              className={`bg-transparent hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent ${
                 startButtonDisabled ? "cursor-not-allowed bg-gray-400" : ""
               }`}
               onClick={() => onStart(task._id)}
@@ -49,7 +67,7 @@ const TaskCard = ({
               Start
             </button>
             <button
-              className={`bg-transparent sm:mx-0 sm:my-2 hover:bg-green-700 text-green-700 hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded ${
+              className={`bg-transparent sm:mx-0 sm:my-2 hover:bg-green-700 text-green-700 hover:text-white py-2 px-4 border border-green-500 hover:border-transparent ${
                 allButtonsDisabled ? "cursor-not-allowed bg-gray-400" : ""
               }`}
               onClick={() => onComplete(task._id)}
@@ -58,7 +76,7 @@ const TaskCard = ({
               Complete
             </button>
             <button
-              className={`bg-transparent hover:bg-red-500 text-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ${
+              className={`bg-transparent hover:bg-red-500 text-red-700 hover:text-white py-2 px-4 border border-red-500 hover:border-transparent ${
                 allButtonsDisabled ? "cursor-not-allowed bg-gray-400" : ""
               }`}
               onClick={() => onDelete(task._id)}

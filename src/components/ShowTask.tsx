@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   useDeleteTaskMutation,
   useGetAllTasksByUserQuery,
@@ -39,6 +39,12 @@ const ShowTask = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 9;
+
+  useEffect(() => {
+    if (tasks) {
+      paginate(1);
+    }
+  }, [tasks]);
 
   const onStart = async (taskId: React.Key | null | undefined | string) => {
     try {
@@ -85,17 +91,16 @@ const ShowTask = () => {
     task.taskName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
   const indexOfLastTask = currentPage * tasksPerPage;
   const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-  const currentTasks = filteredTasks.slice(indexOfFirstTask, indexOfLastTask);
+  const currentTasks =
+    filteredTasks?.slice(indexOfFirstTask, indexOfLastTask) || [];
 
- 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div>
-      <div className="lg:flex lg:flex-row justify-between items-center ">
+      <div className="lg:flex lg:flex-row justify-between items-center">
         <div className="md:flex  justify-between items-center my-8">
           <div className="md:btn-group grid md:grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row flex-col gap-2">
             {["All", "Pending", "Ongoing", "Completed"].map((status) => (
@@ -125,7 +130,7 @@ const ShowTask = () => {
       </div>
 
       <div className="flex justify-center my-6">
-        {Array(Math.ceil(filteredTasks.length / tasksPerPage))
+        {Array(Math.ceil((filteredTasks?.length || 0) / tasksPerPage))
           .fill(0)
           .map((_, index) => (
             <button
@@ -134,7 +139,7 @@ const ShowTask = () => {
               className={`${
                 currentPage === index + 1
                   ? "bg-blue-500 text-white"
-                  : "bg-transparent hover:bg-black text-black hover:text-white"
+                  : "bg-transparent hover-bg-black text-black hover:text-white"
               } px-3 py-2 mx-1 border border-blue-500 rounded-full`}
             >
               {index + 1}
