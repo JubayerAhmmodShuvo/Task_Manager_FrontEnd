@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <html lang="en">
+      <html lang="en" className="!scroll-smooth">
         <body>
           {children}
           <ToastContainer />
