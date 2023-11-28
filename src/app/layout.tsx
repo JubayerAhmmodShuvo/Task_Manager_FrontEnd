@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <html lang="en" className="!scroll-smooth">
+      <html lang="en" className=" bg-red-50 ">
         <body>
           {children}
           <ToastContainer />

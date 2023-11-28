@@ -43,7 +43,7 @@ const TaskPage = () => {
   return (
     <>
       <div className="mt-6 border-2 rounded">
-        <h1 className="text-2xl text-center text-violet-700 font-bold my-6">
+        <h1 className="text-2xl text-center text-fuchsia-700 font-serif my-6">
           Add a New Task
         </h1>
         <div className="mb-6 lg:w-96 mx-auto px-3">
@@ -73,7 +73,7 @@ const TaskPage = () => {
               />
             </div>
             <button
-              className="text-black  cursor-pointer bg-transparent hover:bg-violet-600 hover:text-white flex justify-center mx-auto items-center font-semibold hover-text-white py-2 px-4 border border-blue-500 hover-border-transparent rounded"
+              className="text-black  cursor-pointer bg-transparent hover:bg-rose-400 hover:text-white flex justify-center mx-auto items-center font-semibold hover-text-white py-2 px-4 border border-rose-300 hover-border-transparent rounded"
               type="submit"
             >
               Add Task

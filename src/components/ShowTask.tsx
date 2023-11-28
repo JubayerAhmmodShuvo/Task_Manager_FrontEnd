@@ -87,9 +87,17 @@ const ShowTask = () => {
     return tasks.filter((task: Task) => task.status === status);
   };
 
-  const filteredTasks = tasks?.filter((task: Task) =>
-    task.taskName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTasks = tasks?.filter((task: Task) => {
+    const matchesSearch = task.taskName
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    if (statusFilter === "all") {
+      return matchesSearch;
+    } else {
+      return task.status.toLowerCase() === statusFilter && matchesSearch;
+    }
+  });
 
   const indexOfLastTask = currentPage * tasksPerPage;
   const indexOfFirstTask = indexOfLastTask - tasksPerPage;
@@ -108,8 +116,8 @@ const ShowTask = () => {
                 key={status}
                 className={`${
                   statusFilter.toLowerCase() === status.toLowerCase()
-                    ? "bg-blue-500 text-white"
-                    : "bg-transparent hover:bg-black text-black hover:text-white"
+                    ? "bg-rose-400 text-white"
+                    : "bg-transparent hover:bg-red-200 text-black hover:text-black"
                 } text-lg py-2 px-4 border border-blue-50 hover:border-transparent rounded font-serif`}
                 onClick={() => setStatusFilter(status.toLowerCase())}
               >
@@ -124,7 +132,7 @@ const ShowTask = () => {
             placeholder="Search by Task Name"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-96 py-2 px-3 text-lg rounded-md border border-gray-200"
+            className="w-96 py-3 px-3 text-sm rounded-md border border-gray-200"
           />
         </div>
       </div>
@@ -138,9 +146,9 @@ const ShowTask = () => {
               onClick={() => paginate(index + 1)}
               className={`${
                 currentPage === index + 1
-                  ? "bg-blue-500 text-white"
+                  ? "bg-red-200 text-black"
                   : "bg-transparent hover-bg-black text-black hover:text-white"
-              } px-3 py-2 mx-1 border border-blue-500 rounded-full`}
+              } px-3 py-2 mx-1 border  rounded-full`}
             >
               {index + 1}
             </button>

@@ -38,7 +38,7 @@ const TaskCard = ({
     : `${task.description.slice(0, 120)}...`; 
 
   return (
-    <div className="bg-gray-100 rounded p-8 relative">
+    <div className="bg-zinc-50 rounded p-8 relative">
       <div className="card ">
         <div className="card-body">
           <h2 className="card-title my-4 font-serif text-xl">

@@ -18,7 +18,7 @@ const Header = () => {
 
 
   return (
-    <header className="bg-white">
+    <header className="bg-red-50">
       <div className="flex justify-between items-center h-full">
         <div className="flex items-center"></div>
         {window.innerWidth >= 768 ? <p className="mx-1">{name}</p> : null}
